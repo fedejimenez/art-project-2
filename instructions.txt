@@ -1,0 +1,53 @@
+Abbreviated instructions:
+
+Foreman:
+touch Procfile.dev
+# Procfile.dev
+web: sh -c 'cd client && PORT=3000 npm start' # or the next line.
+web: cd client && PORT=3000 npm start
+api: rails server -p 3001
+
+foreman start -f Procfile.dev
+
+
+# Gemfile
+ gem 'bcrypt', '~> 3.1.7'
+gem 'rack-cors', require: 'rack/cors'
+gem 'knock'
+
+rails g scaffold User name:string email:string password_digest:string admin:boolean
+# db/migrate/xxx_create_users.rb 
+t.boolean :admin, default: false
+# app/models/user.rb 
+class User < ApplicationRecord
+  has_secure_password
+  validates :name, presence: true
+  validates :email, presence: true
+end
+
+# users_controller.rb 
+def user_params
+  params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
+end
+
+Knock Instructions: https://github.com/nsarno/knockrails 
+generate knock:install
+rails generate knock:token_controller user
+
+# app/controllers/application_controller.rb 
+class ApplicationController < ActionController::API
+  include Knock::Authenticable
+end
+
+# app/controllers/articles_controller.rb 
+before_action :authenticate_user
+
+For Rails 5.2+
+# app/controllers/user_token_controller.rb
+class UserTokenController < Knock::AuthTokenController
+  skip_before_action :verify_authenticity_token, raise: false
+end
+
+# config/initializers/knock.rb 
+  # Rails 5.2 uses credentials, not secrets.
+  config.token_secret_signature_key = -> { Rails.application.credentials.fetch(:secret_key_base) }
