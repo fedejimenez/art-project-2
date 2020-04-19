@@ -47,6 +47,8 @@ group :development, :test do
   # Pry
   gem 'pry'
   gem 'pry-byebug'
+  # Foreman
+  gem 'foreman'
 end
 
 group :development do
