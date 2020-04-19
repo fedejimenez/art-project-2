@@ -36,6 +36,10 @@ gem 'knock'
 # Faker
 gem 'faker'
 
+# Pry
+gem 'pry'
+gem 'pry-byebug'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -44,9 +48,6 @@ group :development, :test do
   # Rspec
   gem 'rspec'
   gem 'rspec-rails'
-  # Pry
-  gem 'pry'
-  gem 'pry-byebug'
   # Foreman
   gem 'foreman'
 end
