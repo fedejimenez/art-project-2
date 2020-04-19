@@ -1,12 +1,10 @@
 # README
 
-This application goes along with the Add JWT Authentication to a Rails and React application:
+This app includes:
 
-Building the React front end: http://www.techandstartup.org/tutorials/rails-react-jwt
+1. A Rails API-only application as the back end.
 
-This is a Rails API only application.
-
-The React app is in the client directory.
+2. A React App as the front end. The React app is in the client directory.
 
 To run this app locally, if you have Foreman installed on your system:
 

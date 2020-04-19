@@ -1,36 +1,36 @@
 require 'test_helper'
 
-class ArticlesControllerTest < ActionDispatch::IntegrationTest
+class PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @article = articles(:one)
+    @post = posts(:one)
   end
 
   test "should get index" do
-    get articles_url, as: :json
+    get posts_url, as: :json
     assert_response :success
   end
 
-  test "should create article" do
-    assert_difference('Article.count') do
-      post articles_url, params: { article: { content: @article.content, title: @article.title } }, as: :json
+  test "should create post" do
+    assert_difference('Post.count') do
+      post posts_url, params: { post: { content: @post.content, title: @post.title } }, as: :json
     end
 
     assert_response 201
   end
 
-  test "should show article" do
-    get article_url(@article), as: :json
+  test "should show post" do
+    get post_url(@post), as: :json
     assert_response :success
   end
 
-  test "should update article" do
-    patch article_url(@article), params: { article: { content: @article.content, title: @article.title } }, as: :json
+  test "should update post" do
+    patch post_url(@post), params: { post: { content: @post.content, title: @post.title } }, as: :json
     assert_response 200
   end
 
-  test "should destroy article" do
-    assert_difference('Article.count', -1) do
-      delete article_url(@article), as: :json
+  test "should destroy post" do
+    assert_difference('Post.count', -1) do
+      delete post_url(@post), as: :json
     end
 
     assert_response 204

@@ -11,7 +11,7 @@ foreman start -f Procfile.dev
 
 
 # Gemfile
- gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 gem 'rack-cors', require: 'rack/cors'
 gem 'knock'
 
@@ -30,8 +30,8 @@ def user_params
   params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
 end
 
-Knock Instructions: https://github.com/nsarno/knockrails 
-generate knock:install
+Knock Instructions: https://github.com/nsarno/knock
+rails generate knock:install
 rails generate knock:token_controller user
 
 # app/controllers/application_controller.rb 
@@ -39,7 +39,7 @@ class ApplicationController < ActionController::API
   include Knock::Authenticable
 end
 
-# app/controllers/articles_controller.rb 
+# app/controllers/posts_controller.rb 
 before_action :authenticate_user
 
 For Rails 5.2+
