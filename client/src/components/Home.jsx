@@ -1,11 +1,30 @@
-import React from 'react';
+import React from "react";
+import Gallery from "react-photo-gallery";
+import { photos } from "../photos/photos";
+import Photo from "./Photo";
+import arrayMove from "array-move";
+import { SortableContainer, SortableElement } from "react-sortable-hoc";
+
+/* popout the browser and maximize to see more rows! -> */
+const SortablePhoto = SortableElement(item => <Photo {...item} />);
+const SortableGallery = SortableContainer(({ items }) => (
+  <Gallery photos={items} renderImage={props => <SortablePhoto {...props} />} />
+));
 
 const Home = () => {
+  const [items, setItems] = React.useState(photos);
+
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    setItems(arrayMove(items, oldIndex, newIndex));
+  };
+
   return (
     <div className="jumbotron">
       <h1>Home Page</h1>
+      <h3>Drag photo to rearrange</h3>
+      <SortableGallery items={items} onSortEnd={onSortEnd} axis={"xy"} />
     </div>
   );
-}
+};
 
 export default Home;
