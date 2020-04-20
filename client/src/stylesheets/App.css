@@ -1,18 +1,23 @@
-.App {
-
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
+@import url("https://fonts.googleapis.com/css?family=Just+Another+Hand&display=swap");
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-  text-align: center;  
+  background-color: white;
+  min-height: 100px;
+  padding: 40px;
+  text-align: center;
+}
+
+nav,
+.navbar,
+.navbar-nav {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav-item {
+  margin: 0 3rem;
+  font-size: 3.5rem;
+  font-family: "Just Another Hand", cursive;
 }
 
 .App-title {
@@ -24,7 +29,5 @@
   text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.Main {
 }

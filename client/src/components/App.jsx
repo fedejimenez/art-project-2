@@ -19,8 +19,12 @@ class App extends Component {
     return (
       <Router>
         <div className="container">
-          <Navigation />
-          <Main />
+          <div className="App-header">
+            <Navigation />
+          </div>
+          <div className="Main">
+            <Main />
+          </div>
         </div>
       </Router>
     );
@@ -28,7 +32,7 @@ class App extends Component {
 }
 
 const Navigation = () => (
-  <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav className="navbar navbar-expand-lg navbar-light">
     <ul className="navbar-nav mr-auto">
       <li className="nav-item">
         <NavLink exact className="nav-link" activeClassName="active" to="/">

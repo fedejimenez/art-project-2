@@ -19,9 +19,7 @@ const Home = () => {
   };
 
   return (
-    <div className="jumbotron">
-      <h1>Home Page</h1>
-      <h3>Drag photo to rearrange</h3>
+    <div className="Home">
       <SortableGallery items={items} onSortEnd={onSortEnd} axis={"xy"} />
     </div>
   );
