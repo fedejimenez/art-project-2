@@ -36,7 +36,6 @@ class PostList extends Component {
                 }}
               >
                 <div className="PhotoList-content">
-                  {console.log(post.id)}
                   <header className="text-center mb-40">
                     <h3>{post.title}</h3>
                   </header>

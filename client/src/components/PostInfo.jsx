@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import EditButton from "./EditButton";
+import DeleteButton from "./DeleteButton";
+import CancelButton from "./CancelButton";
 import "../stylesheets/PostInfo.css";
 
 class PostInfo extends Component {
@@ -64,20 +67,14 @@ class PostInfo extends Component {
         </section>
         <div className="PostInfo-buttons">
           <p>
-            <Link
-              to={`/posts/${this.state.post.id}/edit`}
-              className="btn btn-outline-dark"
-            >
-              Edit
+            <Link to={`/posts/${this.state.post.id}/edit`}>
+              <EditButton />
             </Link>
-            <button
-              onClick={this.handleDelete}
-              className="btn btn-outline-dark"
-            >
-              Delete
-            </button>
-            <Link to="/posts" className="btn btn-outline-dark">
-              Close
+            <Link onClick={this.handleDelete} to="#">
+              <DeleteButton />
+            </Link>
+            <Link to="/posts">
+              <CancelButton />
             </Link>
           </p>
         </div>
