@@ -48,11 +48,18 @@ class PostInfo extends Component {
           </header>
           <div className="PostInfo-content card-block">
             <p className="PostInfo-text text-center">
-              {this.state.post.content}
+              {/* {this.state.post.content} */}
             </p>
           </div>
-          <div className="PostInfo-image">
-            <img src={this.state.post.src} />
+          <div className="PostInfo-image-container">
+            <div className="PostInfo-image">
+              <img src={this.state.post.src} />
+            </div>
+            <div className="PostInfo-image-overlay">
+              <div className="PostInfo-image-text">
+                {this.state.post.content}
+              </div>
+            </div>
           </div>
         </section>
         <div className="PostInfo-buttons">
