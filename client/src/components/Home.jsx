@@ -20,6 +20,8 @@ const Home = () => {
 
   return (
     <div className="Home">
+      <hr />
+      <br />
       <SortableGallery items={items} onSortEnd={onSortEnd} axis={"xy"} />
     </div>
   );

@@ -25,33 +25,43 @@ class PostList extends Component {
   render() {
     return (
       <div className="PhotoList-container">
+        <hr />
         {this.state.posts.map(post => {
           return (
-            <article className="PhotoList-item" key={post.id}>
-              <header className="text-center mb-40">
-                <h3>{post.title}</h3>
-              </header>
-              <Link to={`/posts/${post.id}`} className="">
-                <img
-                  className="rounded"
-                  src="https://source.unsplash.com/qGQNmBE7mYw/800x599"
-                  alt="..."
-                />
-              </Link>
-              <div className="card-block">
-                <p className="text-center">{post.content}</p>
-                <p className="text-center mt-40">
-                  <Link
-                    to={`/posts/${post.id}`}
-                    className="btn btn-primary btn-round"
-                  >
-                    Read more
-                  </Link>
-                </p>
-              </div>
-              <br />
+            <div key={post.id}>
+              <section className="PhotoList-item">
+                <div className="PhotoList-content">
+                  <header className="text-center mb-40">
+                    <h3>{post.title}</h3>
+                  </header>
+                  <div className="card-block">
+                    <div className="PhotoList-text">
+                      <p className="text-center">{post.content}</p>
+                    </div>
+                    <p className="text-center mt-40">
+                      <Link
+                        to={`/posts/${post.id}`}
+                        className="PhotoList-read-more btn btn-primary btn-round"
+                      >
+                        Read more
+                      </Link>
+                    </p>
+                  </div>
+                </div>
+                <div className="PhotoList-frame">
+                  {/* <Link to={`/posts/${post.id}`} className=""> */}
+                  <div className="PhotoList-image">
+                    {/* <img */}
+                    {/* className="" */}
+                    {/* // src="https://source.unsplash.com/qGQNmBE7mYw/400x599" */}
+                    {/* alt="..." */}
+                    {/* /> */}
+                  </div>
+                  {/* </Link> */}
+                </div>
+              </section>
               <hr />
-            </article>
+            </div>
           );
         })}
         <Link to="/posts/new" className="btn btn-outline-primary">
