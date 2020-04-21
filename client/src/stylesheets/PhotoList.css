@@ -15,7 +15,7 @@
 .PhotoList-content {
   height: 700px;
   max-width: 45%;
-  margin: 2rem;
+  margin: 3rem;
   line-height: 2.5rem;
   font-family: "Montserrat", sans-serif;
 }
@@ -23,48 +23,85 @@
 .PhotoList-text {
   max-height: 400px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 1.5rem;
+  margin: 1.5rem;
+  position: relative;
+}
+
+.PhotoList-text:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1) 95%
+  );
+  width: 100%;
+  height: 8em;
 }
 
 .PhotoList-frame {
-  background-image: url("../images/background_frame.png");
-  background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
-  padding: 1rem;
-  margin: 0 auto;
-  width: 90%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  margin: 4rem auto;
+  margin-left: 3rem;
+  width: 50%;
+  max-height: 600px;
 }
 
 .PhotoList-image {
   position: relative;
-  background-image: url("https://i.picsum.photos/id/877/200/300.jpg");
+  background-image: url("https://res.cloudinary.com/fedejimenez/image/upload/v1587487866/background_frame.png");
   background-position: center;
-  background-size: contain;
-  width: 50%;
-  height: 60%;
-  border-radius: 50%;
-  top: 16%;
-  margin: 0 auto;
-  box-shadow: 0 0 8px 8px white inset;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 120%;
+  height: 120%;
+  top: -7%;
+  left: -12%;
 }
 
 /* Responsive */
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
+  .PhotoList-frame {
+    width: 130%;
+    height: 550px;
+  }
   .PhotoList-image {
-    width: 50%;
-    height: 50%;
-    top: 22%;
+    padding-top: 4rem;
+    width: 130%;
+    height: 120%;
+    top: -8%;
+    left: -15%;
   }
 }
 
 @media (max-width: 992px) {
+  .PhotoList-text {
+    max-height: 200px;
+    overflow: hidden;
+    margin: 1.5rem;
+    position: relative;
+  }
+
+  .PhotoList-frame {
+    width: 350px;
+    height: 410px;
+    margin-top: 6rem;
+    margin-left: 0;
+  }
   .PhotoList-image {
-    width: 50%;
-    height: 35%;
-    top: 30%;
+    padding-top: 4rem;
+    width: 140%;
+    height: 130%;
+    top: -12%;
+    left: -20%;
   }
 }
 
@@ -72,7 +109,7 @@
   .PhotoList-item {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: column !important;
     justify-content: space-between;
   }
   .PhotoList-content {
@@ -80,25 +117,34 @@
     max-width: 100%;
   }
   .PhotoList-frame {
-    width: 100%;
-    padding: 5rem;
+    width: 350px;
+    height: 500px;
+    margin-top: -5rem;
+    margin-bottom: 6rem;
+    margin-left: auto;
   }
   .PhotoList-image {
-    width: 200px;
-    height: 300px;
-    top: -15px;
+    padding-top: 4rem;
+    width: 140%;
+    height: 130%;
+    top: -12%;
+    left: -20%;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 492px) {
   .PhotoList-frame {
-    width: 100%;
-    min-height: 300px;
-    padding: 1rem;
+    width: 220px;
+    height: 320px;
+    margin-top: -5rem;
+    margin-bottom: 6rem;
+    margin-left: auto;
   }
   .PhotoList-image {
-    width: 150px;
-    height: 200px;
-    top: 30px;
+    padding-top: 4rem;
+    width: 140%;
+    height: 130%;
+    top: -12%;
+    left: -20%;
   }
 }

@@ -26,11 +26,17 @@ class PostList extends Component {
     return (
       <div className="PhotoList-container">
         <hr />
-        {this.state.posts.map(post => {
+        {this.state.posts.sort().map((post, index) => {
           return (
             <div key={post.id}>
-              <section className="PhotoList-item">
+              <section
+                className="PhotoList-item"
+                style={{
+                  flexDirection: index % 2 != 0 ? "row-reverse" : "row"
+                }}
+              >
                 <div className="PhotoList-content">
+                  {console.log(post.id)}
                   <header className="text-center mb-40">
                     <h3>{post.title}</h3>
                   </header>
@@ -48,7 +54,10 @@ class PostList extends Component {
                     </p>
                   </div>
                 </div>
-                <div className="PhotoList-frame">
+                <div
+                  className="PhotoList-frame"
+                  style={{ backgroundImage: `url(${post.src})` }}
+                >
                   {/* <Link to={`/posts/${post.id}`} className=""> */}
                   <div className="PhotoList-image">
                     {/* <img */}

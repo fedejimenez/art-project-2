@@ -1,10 +1,11 @@
 import React from "react";
 import axios from "axios";
+import "../stylesheets/PostEdit.css";
 
 class PostEdit extends React.Component {
   constructor() {
     super();
-    this.state = { title: "", content: "" };
+    this.state = { title: "", content: "", src: "" };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
@@ -65,13 +66,27 @@ class PostEdit extends React.Component {
             <label>Content</label>
             <textarea
               name="content"
-              rows="5"
+              rows="7"
               value={this.state.content}
               onChange={this.handleChange}
               className="form-control"
             />
           </div>
-          <div className="btn-group">
+          <div className="form-group">
+            <label>Image</label>
+            <textarea
+              name="src"
+              rows="1"
+              value={this.state.src}
+              onChange={this.handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className="PostEdit-image">
+            <img src={this.state.src} />
+          </div>
+          <div className="PostEdit-buttons btn-group">
+            <br></br>
             <button type="submit" className="btn btn-dark">
               Update
             </button>
