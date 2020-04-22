@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { Icon } from "semantic-ui-react";
 
-class CancelButton extends Component {
+class EditButton extends Component {
   render() {
     return (
-      <span style={{ position: "fixed", top: "280px", right: "40px" }}>
+      <span style={{ position: "fixed", bottom: "300px", right: "20px" }}>
         <Icon
           style={{ boxShadow: "5px 5px 5px #888888", opacity: 0.9 }}
           link
           inverted
           circular
-          name="undo"
+          name="pencil"
           size="big"
         />
       </span>
@@ -18,4 +18,4 @@ class CancelButton extends Component {
   }
 }
 
-export default CancelButton;
+export default EditButton;

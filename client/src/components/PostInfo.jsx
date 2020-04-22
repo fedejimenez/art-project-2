@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import EditButton from "./EditButton";
-import DeleteButton from "./DeleteButton";
-import CancelButton from "./CancelButton";
+import EditButton from "./Buttons/EditButton";
+import DeleteButton from "./Buttons/DeleteButton";
+import CancelButton from "./Buttons/CancelButton";
 import "../stylesheets/PostInfo.css";
 
 class PostInfo extends Component {

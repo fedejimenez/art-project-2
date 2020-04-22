@@ -58,6 +58,16 @@ class PostAdd extends Component {
               className="form-control"
             />
           </div>
+          <div className="form-group">
+            <label>Image</label>
+            <textarea
+              name="src"
+              rows="1"
+              value={this.state.src}
+              onChange={this.handleChange}
+              className="form-control"
+            />
+          </div>
           <div className="btn-group">
             <button type="submit" className="btn btn-dark">
               Create
