@@ -32,7 +32,23 @@ nav,
 /* Responsive */
 
 @media (max-width: 400px) {
+  .App-header {
+    background-color: white;
+    min-height: 30px;
+    padding: 0px;
+    text-align: center;
+  }
+  nav,
+  .navbar,
+  .navbar-nav {
+    margin: 0;
+    /* margin-right: auto; */
+  }
+  .nav-link {
+    font-size: 2.5rem;
+  }
   .navbar-brand {
     margin: 0;
+    margin-top: 1rem;
   }
 }
