@@ -10,8 +10,8 @@
 nav,
 .navbar,
 .navbar-nav {
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto; */
+  /* margin-right: auto; */
 }
 
 .nav-item {
@@ -29,5 +29,10 @@ nav,
   text-align: center;
 }
 
-.Main {
+/* Responsive */
+
+@media (max-width: 400px) {
+  .navbar-brand {
+    margin: 0;
+  }
 }

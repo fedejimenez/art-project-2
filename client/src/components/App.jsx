@@ -12,7 +12,8 @@ import {
   BrowserRouter as Router,
   Route,
   NavLink,
-  Switch
+  Switch,
+  Link
 } from "react-router-dom";
 
 class App extends Component {
@@ -34,46 +35,38 @@ class App extends Component {
 
 const Navigation = () => (
   <Navbar collapseOnSelect expand="lg" variant="light">
-    {/* <Navbar.Brand href="/" className="navbar nav-item">
+    <Navbar.Brand href="/" className="navbar nav-item">
       Hui Lin
-    </Navbar.Brand> */}
+    </Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">
-      <ul className="navbar-nav mr-auto">
-        <li className="nav-item">
-          <NavLink exact className="nav-link" activeClassName="active" to="/">
+      <Nav className="mr-auto" />
+      <Nav>
+        {/* <Nav.Item>
+          <Nav.Link eventKey="1" as={Link} to="/">
             Home
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink
-            exact
-            className="nav-link"
-            activeClassName="active"
-            to="/posts"
-          >
+          </Nav.Link>
+        </Nav.Item> */}
+        <Nav.Item>
+          <Nav.Link eventKey="2" as={Link} to="/posts">
             Posts
-          </NavLink>
-        </li>
+          </Nav.Link>
+        </Nav.Item>
+
         {localStorage.getItem("jwt") ? (
-          <li className="nav-item">
-            <NavLink exact className="nav-link" to="/logout">
+          <Nav.Item>
+            <Nav.Link eventKey="4" as={Link} to="/logout">
               Log Out
-            </NavLink>
-          </li>
+            </Nav.Link>
+          </Nav.Item>
         ) : (
-          <li className="nav-item">
-            <NavLink
-              exact
-              className="nav-link"
-              activeClassName="active"
-              to="/login"
-            >
+          <Nav.Item>
+            <Nav.Link eventKey="3" as={Link} to="/login">
               Log In
-            </NavLink>
-          </li>
+            </Nav.Link>
+          </Nav.Item>
         )}
-      </ul>
+      </Nav>
     </Navbar.Collapse>
   </Navbar>
 );
