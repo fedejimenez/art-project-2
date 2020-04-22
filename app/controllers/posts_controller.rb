@@ -38,13 +38,16 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   def destroy
     @post = Post.find(params[:id])
-    if current_user.admin?
+    if current_user&.admin?
       @post.destroy
+    else
+      render json: @post.errors, status: :unprocessable_entity
     end
   end
 
   private
-    def post_params
-      params.require(:post).permit(:title, :content)
-    end
+
+  def post_params
+    params.require(:post).permit(:title, :content, :src)
+  end
 end
