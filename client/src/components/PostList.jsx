@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import CreateButton from "./Buttons/CreateButton";
+import HomeButton from "./Buttons/HomeButton";
 import "../stylesheets/PhotoList.css";
 
 class PostList extends Component {
@@ -72,8 +74,11 @@ class PostList extends Component {
             </div>
           );
         })}
-        <Link to="/posts/new" className="btn btn-outline-primary">
-          Create Post
+        <Link to={`/posts/new`}>
+          <CreateButton />
+        </Link>
+        <Link to={`/`}>
+          <HomeButton />
         </Link>
       </div>
     );
