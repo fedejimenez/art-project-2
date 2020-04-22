@@ -7,6 +7,7 @@ import PostList from "./PostList";
 import PostInfo from "./PostInfo";
 import PostAdd from "./PostAdd";
 import PostEdit from "./PostEdit";
+import { Navbar, Nav } from "react-bootstrap";
 import {
   BrowserRouter as Router,
   Route,
@@ -32,43 +33,49 @@ class App extends Component {
 }
 
 const Navigation = () => (
-  <nav className="navbar navbar-expand-lg navbar-light">
-    <ul className="navbar-nav mr-auto">
-      <li className="nav-item">
-        <NavLink exact className="nav-link" activeClassName="active" to="/">
-          Home
-        </NavLink>
-      </li>
-      <li className="nav-item">
-        <NavLink
-          exact
-          className="nav-link"
-          activeClassName="active"
-          to="/posts"
-        >
-          Posts
-        </NavLink>
-      </li>
-      {localStorage.getItem("jwt") ? (
+  <Navbar collapseOnSelect expand="lg" variant="light">
+    {/* <Navbar.Brand href="/" className="navbar nav-item">
+      Hui Lin
+    </Navbar.Brand> */}
+    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+    <Navbar.Collapse id="responsive-navbar-nav">
+      <ul className="navbar-nav mr-auto">
         <li className="nav-item">
-          <NavLink exact className="nav-link" to="/logout">
-            Log Out
+          <NavLink exact className="nav-link" activeClassName="active" to="/">
+            Home
           </NavLink>
         </li>
-      ) : (
         <li className="nav-item">
           <NavLink
             exact
             className="nav-link"
             activeClassName="active"
-            to="/login"
+            to="/posts"
           >
-            Log In
+            Posts
           </NavLink>
         </li>
-      )}
-    </ul>
-  </nav>
+        {localStorage.getItem("jwt") ? (
+          <li className="nav-item">
+            <NavLink exact className="nav-link" to="/logout">
+              Log Out
+            </NavLink>
+          </li>
+        ) : (
+          <li className="nav-item">
+            <NavLink
+              exact
+              className="nav-link"
+              activeClassName="active"
+              to="/login"
+            >
+              Log In
+            </NavLink>
+          </li>
+        )}
+      </ul>
+    </Navbar.Collapse>
+  </Navbar>
 );
 const Main = () => (
   <Switch>
