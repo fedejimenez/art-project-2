@@ -4,10 +4,11 @@ import axios from "axios";
 class PostAdd extends Component {
   constructor() {
     super();
-    this.state = { title: "", content: "" };
+    this.state = { title: "", content: "", src: "" };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
+    this.uploadWidget = this.uploadWidget.bind(this);
   }
 
   handleSubmit(event) {
@@ -33,10 +34,30 @@ class PostAdd extends Component {
     this.props.history.push("/posts");
   }
 
+  uploadWidget(event) {
+    let callback = result => {
+      this.setState({ src: result.info.url });
+    };
+    window.cloudinary.openUploadWidget(
+      {
+        cloud_name: process.env.REACT_APP_CLOUDINARY_NAME,
+        upload_preset: process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET,
+        folder: process.env.REACT_APP_CLOUDINARY_FOLDER,
+        tags: []
+      },
+      (error, result) => {
+        if (result.event === "success") {
+          callback(result);
+        }
+      }
+    );
+  }
+
   render() {
     return (
       <div>
         <h1>Create Post</h1>
+        <br></br>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label>Title</label>
@@ -46,6 +67,7 @@ class PostAdd extends Component {
               value={this.state.title}
               onChange={this.handleChange}
               className="form-control"
+              required
             />
           </div>
           <div className="form-group">
@@ -53,9 +75,10 @@ class PostAdd extends Component {
             <textarea
               name="content"
               rows="5"
-              value={this.state.content}
+              value={this.state.content || ""}
               onChange={this.handleChange}
               className="form-control"
+              required
             />
           </div>
           <div className="form-group">
@@ -68,14 +91,30 @@ class PostAdd extends Component {
               className="form-control"
             />
           </div>
+          <div className="upload">
+            <button
+              className="btn btn--secondary-outline"
+              type="button"
+              onClick={this.uploadWidget}
+            >
+              Add Image
+            </button>
+          </div>
+          <br></br>
+          <br></br>
+          <br></br>
           <div className="btn-group">
-            <button type="submit" className="btn btn-dark">
+            <button
+              type="submit"
+              className="btn btn-dark m-sm-1"
+              onSubmit={this.handleSubmit}
+            >
               Create
             </button>
             <button
               type="button"
               onClick={this.handleCancel}
-              className="btn btn-secondary"
+              className="btn btn-secondary m-sm-1"
             >
               Cancel
             </button>

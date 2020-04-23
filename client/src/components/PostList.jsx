@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import CreateButton from "./Buttons/CreateButton";
 import HomeButton from "./Buttons/HomeButton";
-import "../stylesheets/PhotoList.css";
+import "../stylesheets/PostList.css";
 
 class PostList extends Component {
   constructor() {
@@ -34,7 +34,7 @@ class PostList extends Component {
               <section
                 className="PhotoList-item"
                 style={{
-                  flexDirection: index % 2 != 0 ? "row-reverse" : "row"
+                  flexDirection: index % 2 !== 0 ? "row-reverse" : "row"
                 }}
               >
                 <div className="PhotoList-content">
