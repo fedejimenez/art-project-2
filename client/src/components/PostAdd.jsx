@@ -43,10 +43,11 @@ class PostAdd extends Component {
         cloud_name: process.env.REACT_APP_CLOUDINARY_NAME,
         upload_preset: process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET,
         folder: process.env.REACT_APP_CLOUDINARY_FOLDER,
+        cropping: "true",
         tags: []
       },
       (error, result) => {
-        if (result.event === "success") {
+        if (!error && result && result.event === "success") {
           callback(result);
         }
       }
