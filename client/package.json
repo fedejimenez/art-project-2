@@ -6,6 +6,9 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.2",
+    "cloudinary-core": "^2.8.2",
+    "cloudinary-react": "^1.4.0",
+    "dot-env": "^0.0.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.1",

@@ -56,7 +56,7 @@ class PostInfo extends Component {
           </div>
           <div className="PostInfo-image-container">
             <div className="PostInfo-image">
-              <img src={this.state.post.src} />
+              <img src={this.state.post.src} alt="url" />
             </div>
             <div className="PostInfo-image-overlay">
               <div className="PostInfo-image-text">

@@ -83,7 +83,7 @@ class PostEdit extends React.Component {
             />
           </div>
           <div className="PostEdit-image">
-            <img src={this.state.src} />
+            <img src={this.state.src} alt="url" />
           </div>
           <div className="PostEdit-buttons btn-group">
             <br></br>
