@@ -53,7 +53,7 @@ class PostEdit extends React.Component {
         <h1>Edit {this.state.title}</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label>Title</label>
+            <label className="font-weight-bold">Title</label>
             <input
               type="text"
               name="title"
@@ -63,7 +63,7 @@ class PostEdit extends React.Component {
             />
           </div>
           <div className="form-group">
-            <label>Content</label>
+            <label className="font-weight-bold">Content</label>
             <textarea
               name="content"
               rows="7"
@@ -73,7 +73,7 @@ class PostEdit extends React.Component {
             />
           </div>
           <div className="form-group">
-            <label>Image</label>
+            <label className="font-weight-bold">Image</label>
             <textarea
               name="src"
               rows="1"

@@ -60,7 +60,7 @@ class PostAdd extends Component {
         <br></br>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label>Title</label>
+            <label className="font-weight-bold">Title</label>
             <input
               type="text"
               name="title"
@@ -71,7 +71,7 @@ class PostAdd extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Content</label>
+            <label className="font-weight-bold">Content</label>
             <textarea
               name="content"
               rows="5"
@@ -81,16 +81,8 @@ class PostAdd extends Component {
               required
             />
           </div>
-          <div className="form-group">
-            <label>Image</label>
-            <textarea
-              name="src"
-              rows="1"
-              value={this.state.src}
-              onChange={this.handleChange}
-              className="form-control"
-            />
-          </div>
+
+          <label className="font-weight-bold">Image</label>
           <div className="upload">
             <button
               className="btn btn--secondary-outline"
@@ -99,6 +91,17 @@ class PostAdd extends Component {
             >
               Add Image
             </button>
+          </div>
+          <br></br>
+          <div className="form-group">
+            <textarea
+              name="src"
+              rows="1"
+              value={this.state.src}
+              onChange={this.handleChange}
+              className="form-control"
+              disabled
+            />
           </div>
           <br></br>
           <br></br>
