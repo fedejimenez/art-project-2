@@ -12,6 +12,7 @@ class DeleteButton extends Component {
           circular
           name="trash"
           size="big"
+          color="red"
         />
       </span>
     );

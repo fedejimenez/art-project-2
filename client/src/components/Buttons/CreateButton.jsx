@@ -12,6 +12,7 @@ class CreateButton extends Component {
           circular
           name="add"
           size="big"
+          color="green"
         />
       </span>
     );

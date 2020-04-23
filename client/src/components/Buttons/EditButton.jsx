@@ -12,6 +12,7 @@ class EditButton extends Component {
           circular
           name="pencil"
           size="big"
+          color="yellow"
         />
       </span>
     );
