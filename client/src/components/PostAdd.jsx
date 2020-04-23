@@ -44,6 +44,14 @@ class PostAdd extends Component {
         upload_preset: process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET,
         folder: process.env.REACT_APP_CLOUDINARY_FOLDER,
         cropping: "true",
+        croppingValidateDimensions: "true",
+        showCompletedButton: "true",
+        minImageHeight: 400,
+        minImageWidth: 400,
+        maxImageHeight: 1500,
+        maxImageWidth: 1500,
+        maxFileSize: 10000000,
+        croppingShowDimensions: "true",
         tags: []
       },
       (error, result) => {
