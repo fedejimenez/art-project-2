@@ -52,17 +52,12 @@ class PostInfo extends Component {
           </header>
           <div className="PostInfo-content card-block">
             <p className="PostInfo-text text-center">
-              {/* {this.state.post.content} */}
+              <div> {ReactHtmlParser(this.state.post.content)} </div>
             </p>
           </div>
           <div className="PostInfo-image-container">
             <div className="PostInfo-image">
               <img src={this.state.post.src} alt="url" />
-            </div>
-            <div className="PostInfo-image-overlay">
-              <div className="PostInfo-image-text">
-                <div> {ReactHtmlParser(this.state.post.content)} </div>
-              </div>
             </div>
           </div>
         </section>

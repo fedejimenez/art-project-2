@@ -1,5 +1,17 @@
 @import url("https://fonts.googleapis.com/css?family=Just+Another+Hand&display=swap");
 
+*,
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  padding: 0;
+}
+
 .App-header {
   background-color: white;
   min-height: 100px;
@@ -10,8 +22,8 @@
 nav,
 .navbar,
 .navbar-nav {
-  /* margin-left: auto; */
-  /* margin-right: auto; */
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .nav-item {
@@ -37,12 +49,6 @@ nav,
     min-height: 30px;
     padding: 0px;
     text-align: center;
-  }
-  nav,
-  .navbar,
-  .navbar-nav {
-    margin: 0;
-    /* margin-right: auto; */
   }
   .nav-link {
     font-size: 2.5rem;

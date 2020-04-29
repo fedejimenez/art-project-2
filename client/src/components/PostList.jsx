@@ -44,7 +44,7 @@ class PostList extends Component {
                   </header>
                   <div className="card-block">
                     <div className="PhotoList-text">
-                      <div className="text-justify">
+                      <div className="text-center">
                         {" "}
                         {ReactHtmlParser(post.content)}{" "}
                       </div>
