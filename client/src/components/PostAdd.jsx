@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
+import QuillEditor from "./QuillEditor";
 
 class PostAdd extends Component {
   constructor() {
     super();
     this.state = { title: "", content: "", src: "" };
     this.handleChange = this.handleChange.bind(this);
+    this.handleContentChange = this.handleContentChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.uploadWidget = this.uploadWidget.bind(this);
@@ -29,6 +31,10 @@ class PostAdd extends Component {
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
+
+  handleContentChange = content => {
+    this.setState({ content: content });
+  };
 
   handleCancel() {
     this.props.history.push("/posts");
@@ -81,16 +87,15 @@ class PostAdd extends Component {
           </div>
           <div className="form-group">
             <label className="font-weight-bold">Content</label>
-            <textarea
+            <QuillEditor
               name="content"
               rows="5"
               value={this.state.content || ""}
-              onChange={this.handleChange}
+              onChange={this.handleContentChange}
               className="form-control"
               required
             />
           </div>
-
           <label className="font-weight-bold">Image</label>
           <div className="upload">
             <button
@@ -110,6 +115,7 @@ class PostAdd extends Component {
               onChange={this.handleChange}
               className="form-control"
               disabled
+              required
             />
           </div>
           <br></br>
