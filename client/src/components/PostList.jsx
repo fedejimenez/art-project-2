@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import CreateButton from "./Buttons/CreateButton";
 import HomeButton from "./Buttons/HomeButton";
+import ReactHtmlParser from "react-html-parser";
 import "../stylesheets/PostList.css";
 
 class PostList extends Component {
@@ -43,7 +44,10 @@ class PostList extends Component {
                   </header>
                   <div className="card-block">
                     <div className="PhotoList-text">
-                      <p className="text-center">{post.content}</p>
+                      <div className="text-justify">
+                        {" "}
+                        {ReactHtmlParser(post.content)}{" "}
+                      </div>
                     </div>
                     <p className="text-center mt-40">
                       <Link

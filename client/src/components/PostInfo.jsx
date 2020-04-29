@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import EditButton from "./Buttons/EditButton";
 import DeleteButton from "./Buttons/DeleteButton";
 import CancelButton from "./Buttons/CancelButton";
+import ReactHtmlParser from "react-html-parser";
 import "../stylesheets/PostInfo.css";
 
 class PostInfo extends Component {
@@ -60,7 +61,7 @@ class PostInfo extends Component {
             </div>
             <div className="PostInfo-image-overlay">
               <div className="PostInfo-image-text">
-                {this.state.post.content}
+                <div> {ReactHtmlParser(this.state.post.content)} </div>
               </div>
             </div>
           </div>
