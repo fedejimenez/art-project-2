@@ -14,11 +14,12 @@
 
 .PhotoList-content {
   height: 700px;
-  min-width: 35%;
+  min-width: 45%;
   max-width: 45%;
   margin: 3rem;
   line-height: 2.5rem;
   font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
 }
 
 .PhotoList-text {
