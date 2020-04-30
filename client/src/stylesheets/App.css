@@ -58,3 +58,11 @@ nav,
     margin-top: 1rem;
   }
 }
+
+/* Quill Editor */
+.ql-size-large {
+  font-size: 2rem;
+}
+.ql-size-huge {
+  font-size: 3rem;
+}
