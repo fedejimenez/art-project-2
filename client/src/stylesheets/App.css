@@ -62,7 +62,10 @@ nav,
 /* Quill Editor */
 .ql-size-large {
   font-size: 2rem;
+  line-height: 2rem;
 }
+
 .ql-size-huge {
   font-size: 3rem;
+  line-height: 3rem;
 }
