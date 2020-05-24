@@ -6,11 +6,15 @@ import HomeButton from "./Buttons/HomeButton";
 import ReactHtmlParser from "react-html-parser";
 import "../stylesheets/PostList.css";
 import LazyLoad from "react-lazyload";
+import Loader from "./LoaderPlaceholder";
 
 class PostList extends Component {
   constructor() {
     super();
-    this.state = { posts: [] };
+    this.state = {
+      posts: [],
+      loading: true
+    };
   }
 
   componentDidMount() {
@@ -21,7 +25,10 @@ class PostList extends Component {
       headers: { Authorization: token }
     })
       .then(response => {
-        this.setState({ posts: response.data });
+        this.setState({
+          loading: false,
+          posts: response.data
+        });
       })
       .catch(error => console.log("error", error));
   }
@@ -30,6 +37,7 @@ class PostList extends Component {
     return (
       <div className="PhotoList-container">
         <hr />
+        {this.state.loading ? <Loader height={700} /> : ""}
         {this.state.posts.sort().map((post, index) => {
           return (
             <LazyLoad height={200}>
