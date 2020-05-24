@@ -35,27 +35,27 @@ class PostList extends Component {
 
   render() {
     return (
-      <div className="PhotoList-container">
+      <div className="PostList-container">
         <hr />
-        <div className="PhotoList-loader">
+        <div className="PostList-loader">
           {this.state.loading ? <Loader /> : ""}
         </div>
         {this.state.posts.sort().map((post, index) => {
           return (
-            <LazyLoad height={200}>
+            <LazyLoad height={200} key={post.id}>
               <div key={post.id}>
                 <section
-                  className="PhotoList-item"
+                  className="PostList-item"
                   style={{
                     flexDirection: index % 2 !== 0 ? "row-reverse" : "row"
                   }}
                 >
-                  <div className="PhotoList-content">
+                  <div className="PostList-content">
                     <header className="text-center mb-40">
                       <h3>{post.title}</h3>
                     </header>
                     <div className="card-block">
-                      <div className="PhotoList-text">
+                      <div className="PostList-text">
                         <div className="text-center">
                           {" "}
                           {ReactHtmlParser(post.content)}{" "}
@@ -64,7 +64,7 @@ class PostList extends Component {
                       <p className="text-center mt-40">
                         <Link
                           to={`/posts/${post.id}`}
-                          className="PhotoList-read-more btn btn-primary btn-round"
+                          className="PostList-read-more btn btn-primary btn-round"
                         >
                           Read more
                         </Link>
@@ -72,11 +72,11 @@ class PostList extends Component {
                     </div>
                   </div>
                   <div
-                    className="PhotoList-frame"
+                    className="PostList-frame"
                     style={{ backgroundImage: `url(${post.src})` }}
                   >
                     {/* <Link to={`/posts/${post.id}`} className=""> */}
-                    <div className="PhotoList-image">
+                    <div className="PostList-image">
                       {/* <img */}
                       {/* className="" */}
                       {/* // src="https://source.unsplash.com/qGQNmBE7mYw/400x599" */}
