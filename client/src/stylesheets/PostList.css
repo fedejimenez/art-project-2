@@ -182,13 +182,13 @@
     min-height: 300px;
     max-height: 400px;
   }
-  .PostList-loader svg .Loader-image {
+  .Loader-image {
     display: none;
   }
-  .PostList-loader svg .Loader-title {
+  .Loader-title {
     width: 60%;
   }
-  .PostList-loader svg .Loader-text {
+  .Loader-text {
     width: 90%;
   }
 }
