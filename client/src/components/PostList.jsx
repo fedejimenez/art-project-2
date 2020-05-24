@@ -6,7 +6,7 @@ import HomeButton from "./Buttons/HomeButton";
 import ReactHtmlParser from "react-html-parser";
 import "../stylesheets/PostList.css";
 import LazyLoad from "react-lazyload";
-import Loader from "./LoaderPlaceholder";
+import Loader from "./Loader";
 
 class PostList extends Component {
   constructor() {
@@ -37,7 +37,9 @@ class PostList extends Component {
     return (
       <div className="PhotoList-container">
         <hr />
-        {this.state.loading ? <Loader height={700} /> : ""}
+        <div className="PhotoList-loader">
+          {this.state.loading ? <Loader /> : ""}
+        </div>
         {this.state.posts.sort().map((post, index) => {
           return (
             <LazyLoad height={200}>
