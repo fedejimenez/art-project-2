@@ -7,20 +7,20 @@ import PostList from "./PostList";
 import PostInfo from "./PostInfo";
 import PostAdd from "./PostAdd";
 import PostEdit from "./PostEdit";
-import {
-  BrowserRouter as Router,
-  Route,
-  NavLink,
-  Switch
-} from "react-router-dom";
+import { Navbar, Nav } from "react-bootstrap";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="container">
-          <Navigation />
-          <Main />
+          <div className="App-header">
+            <Navigation />
+          </div>
+          <div className="Main">
+            <Main />
+          </div>
         </div>
       </Router>
     );
@@ -28,43 +28,41 @@ class App extends Component {
 }
 
 const Navigation = () => (
-  <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-    <ul className="navbar-nav mr-auto">
-      <li className="nav-item">
-        <NavLink exact className="nav-link" activeClassName="active" to="/">
-          Home
-        </NavLink>
-      </li>
-      <li className="nav-item">
-        <NavLink
-          exact
-          className="nav-link"
-          activeClassName="active"
-          to="/posts"
-        >
-          Posts
-        </NavLink>
-      </li>
-      {localStorage.getItem("jwt") ? (
-        <li className="nav-item">
-          <NavLink exact className="nav-link" to="/logout">
-            Log Out
-          </NavLink>
-        </li>
-      ) : (
-        <li className="nav-item">
-          <NavLink
-            exact
-            className="nav-link"
-            activeClassName="active"
-            to="/login"
-          >
-            Log In
-          </NavLink>
-        </li>
-      )}
-    </ul>
-  </nav>
+  <Navbar collapseOnSelect expand="lg" variant="light">
+    <Navbar.Brand href="/" className="navbar nav-item">
+      Hui Lin
+    </Navbar.Brand>
+    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+    <Navbar.Collapse id="responsive-navbar-nav">
+      <Nav className="mr-auto" />
+      <Nav>
+        {/* <Nav.Item>
+          <Nav.Link eventKey="1" as={Link} to="/">
+            Home
+          </Nav.Link>
+        </Nav.Item> */}
+        <Nav.Item>
+          <Nav.Link eventKey="2" as={Link} to="/posts">
+            Posts
+          </Nav.Link>
+        </Nav.Item>
+
+        {localStorage.getItem("jwt") ? (
+          <Nav.Item>
+            <Nav.Link eventKey="4" as={Link} to="/logout">
+              Log Out
+            </Nav.Link>
+          </Nav.Item>
+        ) : (
+          <Nav.Item>
+            <Nav.Link eventKey="3" as={Link} to="/login">
+              Log In
+            </Nav.Link>
+          </Nav.Item>
+        )}
+      </Nav>
+    </Navbar.Collapse>
+  </Navbar>
 );
 const Main = () => (
   <Switch>

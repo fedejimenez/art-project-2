@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import EditButton from "./Buttons/EditButton";
+import DeleteButton from "./Buttons/DeleteButton";
+import CancelButton from "./Buttons/CancelButton";
+import ReactHtmlParser from "react-html-parser";
+import "../stylesheets/PostInfo.css";
 
 class PostInfo extends Component {
   constructor() {
@@ -40,25 +45,35 @@ class PostInfo extends Component {
   render() {
     return (
       <div>
-        <h2>
-          {this.state.post.id}: {this.state.post.title}
-        </h2>
-        <p>{this.state.post.content}</p>
-        <p>
-          <Link
-            to={`/posts/${this.state.post.id}/edit`}
-            className="btn btn-outline-dark"
-          >
-            Edit
-          </Link>
-          <button onClick={this.handleDelete} className="btn btn-outline-dark">
-            Delete
-          </button>
-          <Link to="/posts" className="btn btn-outline-dark">
-            Close
-          </Link>
-        </p>
         <hr />
+        <section className="PostInfo my-90">
+          <header className="PostInfo-header text-center mb-40">
+            <h3>{this.state.post.title}</h3>
+          </header>
+          <div className="PostInfo-content card-block">
+            <p className="PostInfo-text text-center">
+              <div> {ReactHtmlParser(this.state.post.content)} </div>
+            </p>
+          </div>
+          <div className="PostInfo-image-container">
+            <div className="PostInfo-image">
+              <img src={this.state.post.src} alt="url" />
+            </div>
+          </div>
+        </section>
+        <div className="PostInfo-buttons">
+          <p>
+            <Link to={`/posts/${this.state.post.id}/edit`}>
+              <EditButton />
+            </Link>
+            <Link onClick={this.handleDelete} to="#">
+              <DeleteButton />
+            </Link>
+            <Link to="/posts">
+              <CancelButton />
+            </Link>
+          </p>
+        </div>
       </div>
     );
   }

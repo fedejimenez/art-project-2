@@ -1,6 +1,9 @@
 {
   "dependencies": {
     "@rails/webpacker": "4.2.2",
+    "array-move": "^2.2.1",
+    "react-photo-gallery": "^8.0.0",
+    "react-sortable-hoc": "^1.11.0",
     "webpack": "4.42.0"
   },
   "devDependencies": {

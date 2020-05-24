@@ -1,11 +1,20 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import CreateButton from "./Buttons/CreateButton";
+import HomeButton from "./Buttons/HomeButton";
+import ReactHtmlParser from "react-html-parser";
+import "../stylesheets/PostList.css";
+import LazyLoad from "react-lazyload";
+import Loader from "./Loader";
 
 class PostList extends Component {
   constructor() {
     super();
-    this.state = { posts: [] };
+    this.state = {
+      posts: [],
+      loading: true
+    };
   }
 
   componentDidMount() {
@@ -16,27 +25,77 @@ class PostList extends Component {
       headers: { Authorization: token }
     })
       .then(response => {
-        this.setState({ posts: response.data });
+        this.setState({
+          loading: false,
+          posts: response.data
+        });
       })
       .catch(error => console.log("error", error));
   }
 
   render() {
     return (
-      <div>
-        {this.state.posts.map(post => {
+      <div className="PostList-container">
+        <hr />
+        <div className="PostList-loader">
+          {this.state.loading ? <Loader /> : ""}
+        </div>
+        {this.state.posts.sort().map((post, index) => {
           return (
-            <div key={post.id}>
-              <h2>
-                <Link to={`/posts/${post.id}`}>{post.title}</Link>
-              </h2>
-              {post.content}
-              <hr />
-            </div>
+            <LazyLoad height={200} key={post.id}>
+              <div key={post.id}>
+                <section
+                  className="PostList-item"
+                  style={{
+                    flexDirection: index % 2 !== 0 ? "row-reverse" : "row"
+                  }}
+                >
+                  <div className="PostList-content">
+                    <header className="text-center mb-40">
+                      <h3>{post.title}</h3>
+                    </header>
+                    <div className="card-block">
+                      <div className="PostList-text">
+                        <div className="text-center">
+                          {" "}
+                          {ReactHtmlParser(post.content)}{" "}
+                        </div>
+                      </div>
+                      <p className="text-center mt-40">
+                        <Link
+                          to={`/posts/${post.id}`}
+                          className="PostList-read-more btn btn-primary btn-round"
+                        >
+                          Read more
+                        </Link>
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="PostList-frame"
+                    style={{ backgroundImage: `url(${post.src})` }}
+                  >
+                    {/* <Link to={`/posts/${post.id}`} className=""> */}
+                    <div className="PostList-image">
+                      {/* <img */}
+                      {/* className="" */}
+                      {/* // src="https://source.unsplash.com/qGQNmBE7mYw/400x599" */}
+                      {/* alt="..." */}
+                      {/* /> */}
+                    </div>
+                    {/* </Link> */}
+                  </div>
+                </section>
+                <hr />
+              </div>
+            </LazyLoad>
           );
         })}
-        <Link to="/posts/new" className="btn btn-outline-primary">
-          Create Post
+        <Link to={`/posts/new`}>
+          <CreateButton />
+        </Link>
+        <Link to={`/`}>
+          <HomeButton />
         </Link>
       </div>
     );

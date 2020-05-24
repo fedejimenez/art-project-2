@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user
+  # before_action :authenticate_user
 
   # GET /posts
   def index
-    @posts = post.all
+    @posts = Post.all.order(id: :desc)
 
     render json: @posts
   end
@@ -38,13 +38,16 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   def destroy
     @post = Post.find(params[:id])
-    if current_user.admin?
+    if current_user&.admin?
       @post.destroy
+    else
+      render json: @post.errors, status: :unprocessable_entity
     end
   end
 
   private
-    def post_params
-      params.require(:post).permit(:title, :content)
-    end
+
+  def post_params
+    params.require(:post).permit(:title, :content, :src)
+  end
 end
