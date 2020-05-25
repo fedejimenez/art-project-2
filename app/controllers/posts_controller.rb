@@ -3,7 +3,6 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    binding.pry
     @posts = Post.paginate(page: params[:page]).order(id: :desc)
 
     render json: {
