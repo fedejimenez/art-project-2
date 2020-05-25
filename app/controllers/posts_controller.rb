@@ -3,9 +3,14 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.all.order(id: :desc)
+    binding.pry
+    @posts = Post.paginate(page: params[:page]).order(id: :desc)
 
-    render json: @posts
+    render json: {
+      posts: @posts,
+      page: @posts.current_page,
+      pages: @posts.total_pages
+    }
   end
 
   # GET /posts/1
@@ -48,6 +53,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :src)
+    params.require(:post).permit(:title, :content, :src, :page)
   end
 end
