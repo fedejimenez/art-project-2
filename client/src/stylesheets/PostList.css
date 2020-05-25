@@ -71,6 +71,11 @@
   left: -15%;
 }
 
+.PostList-pagination {
+  text-align: center;
+  margin: 5%;
+}
+
 /* Responsive */
 
 @media (max-width: 1199px) {

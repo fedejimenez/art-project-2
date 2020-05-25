@@ -7,14 +7,20 @@ import ReactHtmlParser from "react-html-parser";
 import "../stylesheets/PostList.css";
 import LazyLoad from "react-lazyload";
 import Loader from "./Loader";
+import { Pagination } from "semantic-ui-react";
 
 class PostList extends Component {
   constructor() {
     super();
     this.state = {
-      posts: [],
+      postsData: {
+        posts: [],
+        page: "1",
+        pages: "1"
+      },
       loading: true
     };
+    this.handlePage = this.handlePage.bind(this);
   }
 
   componentDidMount() {
@@ -25,13 +31,42 @@ class PostList extends Component {
       headers: { Authorization: token }
     })
       .then(response => {
-        this.setState({
-          loading: false,
-          posts: response.data
-        });
+        this.initialState(response.data);
       })
       .catch(error => console.log("error", error));
   }
+
+  initialState = data => {
+    this.setState({
+      loading: false,
+      postsData: {
+        posts: data.posts,
+        page: data.page,
+        pages: data.pages
+      }
+    });
+  };
+
+  handlePage = (e, { activePage }) => {
+    let goToPage = { activePage };
+    let pageNum = goToPage.activePage;
+    let pageString = pageNum.toString();
+    this.setState({
+      loading: true
+    });
+    let token = "Bearer " + localStorage.getItem("jwt");
+    const url = "/api/posts/?page=" + pageString;
+
+    axios({
+      method: "get",
+      url: url,
+      headers: { Authorization: token }
+    })
+      .then(response => {
+        this.initialState(response.data);
+      })
+      .catch(error => console.log("error", error));
+  };
 
   render() {
     return (
@@ -40,7 +75,7 @@ class PostList extends Component {
         <div className="PostList-loader">
           {this.state.loading ? <Loader /> : ""}
         </div>
-        {this.state.posts.sort().map((post, index) => {
+        {this.state.postsData.posts.sort().map((post, index) => {
           return (
             <LazyLoad height={200} key={post.id}>
               <div key={post.id}>
@@ -91,6 +126,14 @@ class PostList extends Component {
             </LazyLoad>
           );
         })}
+        <div className="PostList-pagination">
+          <Pagination
+            onPageChange={this.handlePage}
+            siblingRange="1"
+            defaultActivePage={this.state.postsData.page}
+            totalPages={this.state.postsData.pages}
+          />
+        </div>
         <Link to={`/posts/new`}>
           <CreateButton />
         </Link>
