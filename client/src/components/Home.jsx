@@ -1,30 +1,7 @@
 import React from "react";
-import Gallery from "react-photo-gallery";
-import { photos } from "../photos/photos";
-import Photo from "./Photo";
-import arrayMove from "array-move";
-import { SortableContainer, SortableElement } from "react-sortable-hoc";
-
-/* popout the browser and maximize to see more rows! -> */
-const SortablePhoto = SortableElement(item => <Photo {...item} />);
-const SortableGallery = SortableContainer(({ items }) => (
-  <Gallery photos={items} renderImage={props => <SortablePhoto {...props} />} />
-));
 
 const Home = () => {
-  const [items, setItems] = React.useState(photos);
-
-  const onSortEnd = ({ oldIndex, newIndex }) => {
-    setItems(arrayMove(items, oldIndex, newIndex));
-  };
-
-  return (
-    <div className="Home">
-      <hr />
-      <br />
-      <SortableGallery items={items} onSortEnd={onSortEnd} axis={"xy"} />
-    </div>
-  );
+  return <div className="Home"></div>;
 };
 
 export default Home;
