@@ -10,8 +10,8 @@ import Loader from "./Loader";
 import { Pagination } from "semantic-ui-react";
 
 class PostList extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       postsData: {
         posts: [],
@@ -34,6 +34,13 @@ class PostList extends Component {
         this.initialState(response.data);
       })
       .catch(error => console.log("error", error));
+    console.log("did mount posts");
+    if (localStorage.getItem("jwt") != null) {
+      console.log("entra if");
+      this.setState({ loggedIn: true });
+    } else {
+      this.setState({ loggedIn: false });
+    }
   }
 
   initialState = data => {
@@ -69,6 +76,10 @@ class PostList extends Component {
   };
 
   render() {
+    if (this.props.location) {
+      const state = this.props.location.state;
+      console.log("state app", state);
+    }
     return (
       <div className="PostList-container">
         <hr />
@@ -144,5 +155,4 @@ class PostList extends Component {
     );
   }
 }
-
 export default PostList;
