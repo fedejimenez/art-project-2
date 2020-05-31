@@ -1,22 +1,52 @@
 import React, { Component } from "react";
 import "../stylesheets/App.css";
-import Home from "./Home";
 import Login from "./Login";
 import Logout from "./Logout";
 import PostList from "./PostList";
 import PostInfo from "./PostInfo";
 import PostAdd from "./PostAdd";
 import PostEdit from "./PostEdit";
-import { Navbar, Nav } from "react-bootstrap";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import Navigation from "./Navigation";
+import NoMatch from "./NoMatch";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.handleLogout = this.handleLogout.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    console.log("App", this.props);
+  }
+
+  handleLogin() {
+    this.setState({ loggedIn: true });
+  }
+
+  handleLogout() {
+    sessionStorage.clear();
+    this.setState({ loggedIn: false });
+  }
+
+  componentDidMount() {
+    console.log("did mount app");
+    if (localStorage.getItem("jwt") != null) {
+      console.log("entra al if");
+      this.setState({ loggedIn: true });
+    } else {
+      this.setState({ loggedIn: false });
+    }
+  }
   render() {
+    if (this.props.location) {
+      const state = this.props.location.state;
+      console.log("state app", state);
+    }
     return (
       <Router>
         <div className="container">
           <div className="App-header">
-            <Navigation />
+            <Navigation loggedIn={this.state.loggedIn} />
           </div>
           <div className="Main">
             <Main />
@@ -27,52 +57,26 @@ class App extends Component {
   }
 }
 
-const Navigation = () => (
-  <Navbar collapseOnSelect expand="lg" variant="light">
-    <Navbar.Brand href="/" className="navbar nav-item">
-      Hui Lin
-    </Navbar.Brand>
-    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-    <Navbar.Collapse id="responsive-navbar-nav">
-      <Nav className="mr-auto" />
-      <Nav>
-        {/* <Nav.Item>
-          <Nav.Link eventKey="1" as={Link} to="/">
-            Home
-          </Nav.Link>
-        </Nav.Item> */}
-        <Nav.Item>
-          <Nav.Link eventKey="2" as={Link} to="/posts">
-            Posts
-          </Nav.Link>
-        </Nav.Item>
-
-        {localStorage.getItem("jwt") ? (
-          <Nav.Item>
-            <Nav.Link eventKey="4" as={Link} to="/logout">
-              Log Out
-            </Nav.Link>
-          </Nav.Item>
-        ) : (
-          <Nav.Item>
-            <Nav.Link eventKey="3" as={Link} to="/login">
-              Log In
-            </Nav.Link>
-          </Nav.Item>
-        )}
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
-);
 const Main = () => (
   <Switch>
-    <Route exact path="/" component={Home} />
-    <Route exact path="/login" component={Login} />
-    <Route exact path="/logout" component={Logout} />
+    <Route exact path="/" component={PostList} />
+    <Route
+      exact
+      path="/login"
+      component={Login}
+      render={props => <Login logInHandler={this.handleLogin} {...props} />}
+    />
+    <Route
+      exact
+      path="/logout"
+      component={Logout}
+      render={props => <Logout logOutHandler={this.handleLogout} {...props} />}
+    />
     <Route exact path="/posts" component={PostList} />
     <Route exact path="/posts/new" component={PostAdd} />
     <Route exact path="/posts/:id" component={PostInfo} />
     <Route exact path="/posts/:id/edit" component={PostEdit} />
+    <Route component={NoMatch} />
   </Switch>
 );
 
